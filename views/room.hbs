@@ -1,0 +1,26 @@
+<html>
+   <head>
+   <style>
+       #wishing-well {
+           position: relative;
+           width: 400px;
+           height: 300px;
+           margin: 50px;
+           outline: solid 1px black;
+       }
+   </style>
+   <script>
+       const webSocket = new WebSocket('ws://localhost:443/room');
+       let el;
+ 
+       webSocket.onmessage = (event) => {
+           const data = JSON.parse(event.data);
+           el = document.getElementById('peeps');
+           el.innerHTML = data.name; 
+       };
+   </script>
+   </head>
+   <body>
+       <p id="peeps"></p>
+   </body>
+</html>
